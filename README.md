@@ -13,6 +13,7 @@ Este repositorio contiene la estructura de trabajo para procesar, segmentar y vi
 - `fruitfly_neural_net.py`: Inferencia de red neuronal 3D (`ResUNet3D`) optimizada para estimar afinidades de membrana y segmentación celular.
 - `launch_neuroglancer_flyem.py`: Servidor web local para la exploración de los datasets **Janelia FlyEM Hemibrain** y **FAFB v14**.
 - `local_dataset_viewer.py`: Flujo de trabajo integrado que corre la inferencia y despliega el visualizador localmente.
+- `terraria_fly_bridge.py`: Módulo de conexión mediante socket localhost entre el conectoma de Drosophila y una instancia de Terraria.
 
 ---
 
@@ -83,6 +84,21 @@ El resultado de la inferencia se guardará en `data/fruitfly_scanner_prediction.
   ```
 
 Una vez ejecutado, abre la dirección URL mostrada (`http://127.0.0.1:9999/v/...`) en el navegador Google Chrome.
+
+---
+
+### 6. Integración con Terraria en Localhost (Agente Embodied)
+
+Si dispones de un mod de Terraria que comunique el juego mediante sockets/HTTP en `localhost`:
+
+```powershell
+python terraria_fly_bridge.py
+```
+
+Este script establece un bucle de control cerrado (Closed-Loop) donde:
+1. **Lóbulo Óptico / Entrada Sensorial**: Transforma la visión de bloques, vida del jugador y enemigos cercanos recibidos de Terraria en impulsos neuronales.
+2. **Procesamiento Conectómico**: Retransmite la señal a través del grafo sináptico 3D de la mosca.
+3. **Salida Motora**: Mapea la activación de las neuronas motoras descendentes a comandos del jugador (`move_left`, `move_right`, `jump`, `attack`).
 
 ---
 
