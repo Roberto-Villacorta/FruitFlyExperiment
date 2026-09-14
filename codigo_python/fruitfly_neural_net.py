@@ -63,7 +63,7 @@ def run_scanner_inference(volume_path=None, output_path=None):
     """
     device = get_device_info()
     
-    data_dir = os.path.join(os.path.dirname(__file__), "data")
+    data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
     if volume_path is None:
         volume_path = os.path.join(data_dir, "fruitfly_sample_volume.h5")
         

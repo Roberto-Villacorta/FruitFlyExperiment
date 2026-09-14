@@ -1,5 +1,9 @@
 # Script de PowerShell para crear el entorno virtual de Python e instalar PyTorch con soporte CUDA y Neuroglancer
 
+# Asegurar que la ruta de ejecucion sea la raiz del proyecto
+$ProjectRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
+Set-Location $ProjectRoot
+
 Write-Host "Creando el entorno virtual (.venv)..." -ForegroundColor Green
 python -m venv .venv
 

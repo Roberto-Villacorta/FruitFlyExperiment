@@ -8,7 +8,7 @@ def main():
     print(" Escáner y visualizador local de connectómica (Drosophila melanogaster)")
     print("--------------------------------------------------------------------------")
     
-    data_dir = os.path.join(os.path.dirname(__file__), "data")
+    data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
     pred_h5 = os.path.join(data_dir, "fruitfly_scanner_prediction.h5")
     
     # 1. Ejecución de la red neuronal si no se ha procesado previamente la inferencia

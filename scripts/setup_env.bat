@@ -1,6 +1,9 @@
 @echo off
 rem Script de automatizacion para el simbolo del sistema en Windows
 
+rem Cambiar al directorio raiz del proyecto (directorio padre de scripts/)
+cd /d "%~dp0\.."
+
 echo Creando el entorno virtual (.venv)...
 python -m venv .venv
 

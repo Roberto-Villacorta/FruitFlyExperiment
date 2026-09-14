@@ -6,14 +6,17 @@ Este repositorio contiene la estructura de trabajo para procesar, segmentar y vi
 
 ## Estructura del Proyecto
 
-- `setup_env.ps1`: Script de instalación automatizada en PowerShell (crea `.venv` e instala PyTorch CUDA y dependencias).
-- `setup_env.bat`: Script equivalente para la consola de comandos de Windows (`cmd.exe`).
+- `scripts/`: Scripts de automatización y configuración del entorno de desarrollo.
+  - `scripts/setup_env.ps1`: Script de instalación automatizada en PowerShell (crea `.venv` e instala PyTorch CUDA y dependencias).
+  - `scripts/setup_env.bat`: Script equivalente para la consola de comandos de Windows (`cmd.exe`).
+- `codigo_python/`: Módulos de procesamiento neuronal, visualización e interfaces.
+  - `codigo_python/download_public_data.py`: Script para obtener o sintetizar volúmenes de prueba 3D en la carpeta `data/`.
+  - `codigo_python/fruitfly_neural_net.py`: Inferencia de red neuronal 3D (`ResUNet3D`) optimizada para estimar afinidades de membrana y segmentación celular.
+  - `codigo_python/launch_neuroglancer_flyem.py`: Servidor web local para la exploración de los datasets **Janelia FlyEM Hemibrain** y **FAFB v14**.
+  - `codigo_python/local_dataset_viewer.py`: Flujo de trabajo integrado que corre la inferencia y despliega el visualizador localmente.
+  - `codigo_python/terraria_fly_bridge.py`: Módulo de conexión mediante socket localhost entre el conectoma de Drosophila y una instancia de Terraria.
+- `data/`: Almacén de volúmenes 3D, micrografías EM y resultados de segmentación (`.h5`, `.tif`).
 - `requirements.txt`: Especificación de librerías Python (`torch`, `neuroglancer`, `cloud-volume`, `h5py`, `imageio`, `scipy`).
-- `download_public_data.py`: Script para obtener o sintetizar volúmenes de prueba 3D en la carpeta `data/`.
-- `fruitfly_neural_net.py`: Inferencia de red neuronal 3D (`ResUNet3D`) optimizada para estimar afinidades de membrana y segmentación celular.
-- `launch_neuroglancer_flyem.py`: Servidor web local para la exploración de los datasets **Janelia FlyEM Hemibrain** y **FAFB v14**.
-- `local_dataset_viewer.py`: Flujo de trabajo integrado que corre la inferencia y despliega el visualizador localmente.
-- `terraria_fly_bridge.py`: Módulo de conexión mediante socket localhost entre el conectoma de Drosophila y una instancia de Terraria.
 
 ---
 
@@ -24,10 +27,10 @@ Este repositorio contiene la estructura de trabajo para procesar, segmentar y vi
 Ejecuta el script de preparación desde PowerShell:
 
 ```powershell
-.\setup_env.ps1
+.\scripts\setup_env.ps1
 ```
 
-_(Si utilizas la consola CMD de Windows, puedes ejecutar `setup_env.bat`)_
+_(Si utilizas la consola CMD de Windows, puedes ejecutar `.\scripts\setup_env.bat`)_
 
 Este comando configurará la carpeta `.venv` e instalará PyTorch con soporte para tarjetas gráficas dedicadas NVIDIA.
 
@@ -53,7 +56,7 @@ En cada nueva terminal de PowerShell, activa el entorno virtual mediante:
 Para descargar o generar los volúmenes de entrenamiento e inferencia:
 
 ```powershell
-python download_public_data.py
+python codigo_python/download_public_data.py
 ```
 
 Esto generará los volúmenes en formato HDF5 y TIFF dentro del directorio `data/`.
@@ -63,7 +66,7 @@ Esto generará los volúmenes en formato HDF5 y TIFF dentro del directorio `data
 Para procesar el volumen 3D utilizando la red neuronal convolucional:
 
 ```powershell
-python fruitfly_neural_net.py
+python codigo_python/fruitfly_neural_net.py
 ```
 
 El resultado de la inferencia se guardará en `data/fruitfly_scanner_prediction.h5`.
@@ -73,18 +76,18 @@ El resultado de la inferencia se guardará en `data/fruitfly_scanner_prediction.
 - **Para visualizar el dataset público Janelia FlyEM Hemibrain**:
 
   ```powershell
-  python launch_neuroglancer_flyem.py --mode flyem
+  python codigo_python/launch_neuroglancer_flyem.py --mode flyem
   ```
 
 - **Para visualizar el reconstruido FAFB v14 (Full Adult Fly Brain)**:
 
   ```powershell
-  python launch_neuroglancer_flyem.py --mode fafb
+  python codigo_python/launch_neuroglancer_flyem.py --mode fafb
   ```
 
 - **Para explorar el volumen local procesado por la red neuronal**:
   ```powershell
-  python local_dataset_viewer.py
+  python codigo_python/local_dataset_viewer.py
   ```
 
 Una vez ejecutado, abre la dirección URL mostrada (`http://127.0.0.1:9999/v/...`) en el navegador Google Chrome.
@@ -96,7 +99,7 @@ Una vez ejecutado, abre la dirección URL mostrada (`http://127.0.0.1:9999/v/...
 Si dispones de un mod de Terraria que comunique el juego mediante sockets/HTTP en `localhost`:
 
 ```powershell
-python terraria_fly_bridge.py
+python codigo_python/terraria_fly_bridge.py
 ```
 
 Este script establece un bucle de control cerrado (Closed-Loop) donde:

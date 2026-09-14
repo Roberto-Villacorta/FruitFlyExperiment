@@ -46,7 +46,7 @@ def launch_flyem_neuroglancer(port=9999, mode='flyem'):
             import numpy as np
             import h5py
             
-            data_dir = os.path.join(os.path.dirname(__file__), "data")
+            data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
             raw_h5 = os.path.join(data_dir, "fruitfly_sample_volume.h5")
             pred_h5 = os.path.join(data_dir, "fruitfly_scanner_prediction.h5")
             

@@ -5,8 +5,8 @@ import h5py
 import numpy as np
 import imageio.v2 as imageio
 
-# Directorio base para guardar los archivos de datos
-DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+# Directorio base para guardar los archivos de datos (en la raiz del proyecto)
+DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
 
 def ensure_data_dir():
     """Crea la carpeta de datos si aun no existe en el proyecto."""
