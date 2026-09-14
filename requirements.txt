@@ -1,0 +1,20 @@
+# Dependencies for FruitFly Connectomics & Neuroglancer Scanner
+# PyTorch with CUDA support is installed via setup script
+
+numpy
+
+scipy
+pillow
+requests
+h5py
+imageio
+imageio-ffmpeg
+scikit-image
+yacs
+cloud-volume
+neuroglancer
+tornado
+sockjs-tornado
+google-apitools
+jupyter
+notebook
