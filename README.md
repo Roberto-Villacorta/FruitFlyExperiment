@@ -1,6 +1,6 @@
 # Entorno de Connectómica y Escáner Neuronal para Drosophila melanogaster
 
-Este repositorio contiene la estructura de trabajo para procesar, segmentar y visualizar datos de micrografía electrónica (EM) del cerebro de la mosca de la fruta (*Drosophila melanogaster*). Utiliza redes neuronales convolucionales 3D en PyTorch con aceleración por GPU CUDA (NVIDIA A1000) e integración directa con el visualizador WebGL **Neuroglancer**.
+Este repositorio contiene la estructura de trabajo para procesar, segmentar y visualizar datos de micrografía electrónica (EM) del cerebro de la mosca de la fruta (_Drosophila melanogaster_). Utiliza redes neuronales convolucionales 3D en PyTorch con aceleración por GPU CUDA (NVIDIA A1000) e integración directa con el visualizador WebGL **Neuroglancer**.
 
 ---
 
@@ -27,7 +27,7 @@ Ejecuta el script de preparación desde PowerShell:
 .\setup_env.ps1
 ```
 
-*(Si utilizas la consola CMD de Windows, puedes ejecutar `setup_env.bat`)*
+_(Si utilizas la consola CMD de Windows, puedes ejecutar `setup_env.bat`)_
 
 Este comando configurará la carpeta `.venv` e instalará PyTorch con soporte para tarjetas gráficas dedicadas NVIDIA.
 
@@ -41,9 +41,11 @@ En cada nueva terminal de PowerShell, activa el entorno virtual mediante:
 
 > **Nota si aparece error de política de ejecución (ExecutionPolicy):**  
 > Si PowerShell bloquea la ejecución de scripts (`UnauthorizedAccess`), ejecuta este comando previamente para habilitar el uso de scripts en la sesión actual:
+>
 > ```powershell
 > Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
 > ```
+>
 > O activa directamente el entorno desde **CMD** ejecutando: `.\.venv\Scripts\activate.bat`
 
 ### 3. Preparación de Datos de Entrada
@@ -69,11 +71,13 @@ El resultado de la inferencia se guardará en `data/fruitfly_scanner_prediction.
 ### 5. Visualización Interactiva con Neuroglancer
 
 - **Para visualizar el dataset público Janelia FlyEM Hemibrain**:
+
   ```powershell
   python launch_neuroglancer_flyem.py --mode flyem
   ```
 
 - **Para visualizar el reconstruido FAFB v14 (Full Adult Fly Brain)**:
+
   ```powershell
   python launch_neuroglancer_flyem.py --mode fafb
   ```
@@ -96,9 +100,12 @@ python terraria_fly_bridge.py
 ```
 
 Este script establece un bucle de control cerrado (Closed-Loop) donde:
+
 1. **Lóbulo Óptico / Entrada Sensorial**: Transforma la visión de bloques, vida del jugador y enemigos cercanos recibidos de Terraria en impulsos neuronales.
 2. **Procesamiento Conectómico**: Retransmite la señal a través del grafo sináptico 3D de la mosca.
 3. **Salida Motora**: Mapea la activación de las neuronas motoras descendentes a comandos del jugador (`move_left`, `move_right`, `jump`, `attack`).
+
+https://github.com/chairclr/HeadlessTerrariaClient
 
 ---
 
@@ -107,17 +114,17 @@ Este script establece un bucle de control cerrado (Closed-Loop) donde:
 Para la utilización de este software y la publicación de trabajos académicos basados en estos datos, deben citarse las siguientes fuentes originales:
 
 1. **PyTorch Connectomics (Documentación y Framework)**:
-   - Lin, Z., Dong, W., Wei, D., & Pfister, H. (2021). *PyTorch Connectomics: A Deep Learning Library for Cellular Morphology Analysis*. PyTorch Connectomics Documentation. 
+   - Lin, Z., Dong, W., Wei, D., & Pfister, H. (2021). _PyTorch Connectomics: A Deep Learning Library for Cellular Morphology Analysis_. PyTorch Connectomics Documentation.
    - URL: https://connectomics.readthedocs.io/en/latest/external/neuroglancer.html
 
 2. **Google Neuroglancer**:
-   - Google Connectomics Team. (2020). *Neuroglancer: WebGL-based viewer for volumetric data*. Google Research.
+   - Google Connectomics Team. (2020). _Neuroglancer: WebGL-based viewer for volumetric data_. Google Research.
    - Repositorio oficial: https://github.com/google/neuroglancer
 
 3. **Dataset Janelia FlyEM Hemibrain**:
-   - Scheffer, L. K., Xu, C. S., Januszewski, M., Lu, Z., Takemura, S. Y., Hayworth, K. J., ... & Plaza, S. M. (2020). *A connectome and analysis of the adult Drosophila central brain*. **eLife**, 9, e57442. 
+   - Scheffer, L. K., Xu, C. S., Januszewski, M., Lu, Z., Takemura, S. Y., Hayworth, K. J., ... & Plaza, S. M. (2020). _A connectome and analysis of the adult Drosophila central brain_. **eLife**, 9, e57442.
    - DOI: https://doi.org/10.7554/eLife.57442
 
 4. **Dataset FAFB (Full Adult Fly Brain)**:
-   - Zheng, Z., Lauritzen, J. S., Perlman, E., Robinson, C. G., Nichols, M., Milkie, D., ... & Bock, D. D. (2018). *A Complete Electron Microscopy Volume of the Female Adult Drosophila Brain*. **Cell**, 174(3), 730-743.
+   - Zheng, Z., Lauritzen, J. S., Perlman, E., Robinson, C. G., Nichols, M., Milkie, D., ... & Bock, D. D. (2018). _A Complete Electron Microscopy Volume of the Female Adult Drosophila Brain_. **Cell**, 174(3), 730-743.
    - DOI: https://doi.org/10.1016/j.cell.2018.06.019
