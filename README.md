@@ -32,11 +32,18 @@ Este comando configurará la carpeta `.venv` e instalará PyTorch con soporte pa
 
 ### 2. Activación del Entorno Virtual
 
-En cada nueva terminal de trabajo, activa el entorno virtual mediante:
+En cada nueva terminal de PowerShell, activa el entorno virtual mediante:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
+
+> **Nota si aparece error de política de ejecución (ExecutionPolicy):**  
+> Si PowerShell bloquea la ejecución de scripts (`UnauthorizedAccess`), ejecuta este comando previamente para habilitar el uso de scripts en la sesión actual:
+> ```powershell
+> Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+> ```
+> O activa directamente el entorno desde **CMD** ejecutando: `.\.venv\Scripts\activate.bat`
 
 ### 3. Preparación de Datos de Entrada
 
